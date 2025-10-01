@@ -25,14 +25,14 @@ kai-custom/
 When cloning this repository, you need to initialize and update submodules:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/fanpay/kai-custom.git
 cd kai-custom
 git submodule update --init --recursive
 ```
 
 ### Alternative: Clone with Submodules
 ```bash
-git clone --recurse-submodules <repository-url>
+git clone --recurse-submodules https://github.com/fanpay/kai-custom.git
 ```
 
 ## Submodule Management
@@ -75,19 +75,22 @@ git push
 ## Custom Apps
 
 ### Find Duplicates URL Slug
-Located in `custom-apps/find-duplicates-url-slug/`
+Located in `custom-apps/find-duplicates-url-slug/`  
+📁 **Repository:** https://github.com/fanpay/find-duplicates-url-slug
 
 A Kontent.ai custom app to find and manage duplicate URL slugs across content items.
 
 ### Content Validator
-Located in `custom-apps/content-validator/`
+Located in `custom-apps/content-validator/`  
+📁 **Repository:** https://github.com/fanpay/content-validator
 
 A custom app for validating content according to custom business rules.
 
 ## Custom Elements
 
 ### Tag Picker
-Located in `custom-elements/tag-picker/`
+Located in `custom-elements/tag-picker/`  
+📁 **Repository:** https://github.com/fanpay/tag-picker
 
 An advanced tag selection custom element with enhanced functionality.
 
