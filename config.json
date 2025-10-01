@@ -1,0 +1,124 @@
+{
+  "repository": {
+    "name": "kai-custom",
+    "description": "Kontent.ai Custom Extensions Repository",
+    "version": "1.0.0",
+    "type": "monorepo-submodules"
+  },
+  "submodules": {
+    "custom-apps": {
+      "find-duplicates-url-slug": {
+        "name": "Find Duplicates URL Slug",
+        "description": "A Kontent.ai custom app to find and manage duplicate URL slugs",
+        "type": "custom-app",
+        "technology": "react",
+        "deployment": {
+          "staging": "https://staging-find-duplicates.example.com",
+          "production": "https://find-duplicates.example.com"
+        },
+        "kontent": {
+          "app_id": "find-duplicates-url-slug",
+          "permissions": ["content:read", "taxonomy:read"]
+        }
+      },
+      "content-validator": {
+        "name": "Content Validator",
+        "description": "A custom app for validating content according to business rules",
+        "type": "custom-app",
+        "technology": "react",
+        "deployment": {
+          "staging": "https://staging-content-validator.example.com",
+          "production": "https://content-validator.example.com"
+        },
+        "kontent": {
+          "app_id": "content-validator",
+          "permissions": ["content:read", "content:write", "workflow:read"]
+        }
+      }
+    },
+    "custom-elements": {
+      "tag-picker": {
+        "name": "Tag Picker",
+        "description": "Advanced tag selection custom element",
+        "type": "custom-element",
+        "technology": "vanilla-js",
+        "deployment": {
+          "staging": "https://staging-tag-picker.example.com",
+          "production": "https://tag-picker.example.com"
+        },
+        "kontent": {
+          "element_id": "tag-picker",
+          "configuration_schema": {
+            "tagSources": {
+              "type": "array",
+              "description": "Available tag sources"
+            },
+            "allowCustomTags": {
+              "type": "boolean",
+              "description": "Allow creation of custom tags"
+            },
+            "maxTags": {
+              "type": "number",
+              "description": "Maximum number of tags allowed"
+            }
+          }
+        }
+      }
+    }
+  },
+  "development": {
+    "node_version": "18.x",
+    "npm_version": "8.x",
+    "setup_command": "./scripts/setup.sh",
+    "update_command": "./scripts/update-all.sh",
+    "deploy_command": "./scripts/deploy.sh"
+  },
+  "deployment": {
+    "environments": ["staging", "production"],
+    "strategy": "individual-submodule",
+    "hosting": {
+      "custom-apps": "vercel",
+      "custom-elements": "netlify"
+    },
+    "ci_cd": {
+      "platform": "github-actions",
+      "auto_deploy": {
+        "staging": true,
+        "production": false
+      }
+    }
+  },
+  "best_practices": {
+    "branching": {
+      "main_branch": "main",
+      "feature_prefix": "feature/",
+      "hotfix_prefix": "hotfix/",
+      "release_prefix": "release/"
+    },
+    "commits": {
+      "conventional_commits": true,
+      "require_signoff": false
+    },
+    "submodules": {
+      "track_branch": "main",
+      "update_strategy": "remote",
+      "recursive_clone": true
+    }
+  },
+  "contacts": {
+    "maintainers": [
+      {
+        "name": "Development Team",
+        "email": "dev-team@example.com",
+        "role": "primary"
+      }
+    ],
+    "reviewers": [
+      {
+        "name": "QA Team", 
+        "email": "qa-team@example.com",
+        "role": "quality_assurance"
+      }
+    ]
+  }
+}

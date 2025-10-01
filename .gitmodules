@@ -1,0 +1,9 @@
+[submodule "custom-apps/find-duplicates-url-slug"]
+	path = custom-apps/find-duplicates-url-slug
+	url = /Users/fpayan/.local/git-repos/find-duplicates-url-slug.git
+[submodule "custom-apps/content-validator"]
+	path = custom-apps/content-validator
+	url = /Users/fpayan/.local/git-repos/content-validator.git
+[submodule "custom-elements/tag-picker"]
+	path = custom-elements/tag-picker
+	url = /Users/fpayan/.local/git-repos/tag-picker.git
