@@ -9,6 +9,11 @@ echo "=================================================="
 echo "📥 Initializing submodules..."
 git submodule update --init --recursive
 
+# Configure personal email for this repository and submodules
+echo "⚙️  Configuring Git settings for personal account..."
+git config --local user.email "f.payan@uniandes.edu.co"
+git config --local user.name "Fabian Payan"
+
 # Check if submodules were initialized successfully
 if [ $? -eq 0 ]; then
     echo "✅ Submodules initialized successfully"
@@ -26,6 +31,10 @@ setup_submodule() {
     
     if [ -d "$submodule_path" ]; then
         cd "$submodule_path"
+        
+        # Configure Git settings for personal account
+        git config --local user.email "f.payan@uniandes.edu.co"
+        git config --local user.name "Fabian Payan"
         
         # Check if package.json exists (Node.js project)
         if [ -f "package.json" ]; then

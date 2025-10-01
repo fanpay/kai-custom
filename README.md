@@ -15,6 +15,7 @@ kai-custom/
 ├── README.md                       # This file
 └── scripts/                        # Management scripts
     ├── setup.sh                    # Initial setup script
+    ├── configure-git.sh            # Configure Git settings
     ├── update-all.sh               # Update all submodules
     └── deploy.sh                   # Deployment script
 ```
@@ -33,6 +34,33 @@ git submodule update --init --recursive
 ### Alternative: Clone with Submodules
 ```bash
 git clone --recurse-submodules https://github.com/fanpay/kai-custom.git
+```
+
+## Git Configuration
+
+This repository is configured to use a personal email address (`f.payan@uniandes.edu.co`) while maintaining the global Git configuration for corporate work.
+
+### Automatic Configuration
+The setup script automatically configures the correct email for this repository and all submodules.
+
+### Manual Configuration
+If you need to reconfigure Git settings:
+```bash
+# Configure personal email for this project
+./scripts/configure-git.sh
+
+# Or manually for individual repositories
+git config --local user.email "f.payan@uniandes.edu.co"
+git config --local user.name "Fabian Payan"
+```
+
+### Verification
+```bash
+# Check global configuration (corporate)
+git config --global user.email
+
+# Check local configuration (personal)
+git config --local user.email
 ```
 
 ## Submodule Management
@@ -122,6 +150,13 @@ Run `./scripts/setup.sh` to:
 - Initialize all submodules
 - Install dependencies for each submodule
 - Set up development environment
+- Configure Git settings for personal account
+
+### Git Configuration Script
+Run `./scripts/configure-git.sh` to:
+- Configure personal email for this repository and all submodules
+- Verify Git configuration settings
+- Show configuration summary
 
 ### Update Script
 Run `./scripts/update-all.sh` to:
