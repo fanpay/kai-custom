@@ -8,9 +8,10 @@ This repository manages multiple Kontent.ai custom apps and custom elements usin
 kai-custom/
 ├── custom-apps/                    # Custom applications submodules
 │   ├── find-duplicates-url-slug/   # Finds duplicate URL slugs
-│   └── content-validator/          # Content validation app
+│   ├── content-validator/          # Content validation app
+│   └── model-visualizer/           # Model visualization tool
 ├── custom-elements/                # Custom elements submodules
-│   └── tag-picker/                # Advanced tag picker element
+│   └── tag-picker/                 # Advanced tag picker element
 ├── .gitmodules                     # Submodule configuration
 ├── README.md                       # This file
 └── scripts/                        # Management scripts
@@ -63,16 +64,110 @@ git config --global user.email
 git config --local user.email
 ```
 
-## Submodule Management
+## Adding New Modules (For Developers)
 
-### Adding a New Submodule
+### Prerequisites
+Before adding a new module, ensure you have:
+- A separate GitHub repository for your module
+- The repository contains a complete, working Kontent.ai custom app or custom element
+- Proper documentation in the module's README
+- The module is tested and ready for integration
+
+### Step-by-Step Guide: Adding a Custom App
+
+1. **Navigate to the main repository**
+   ```bash
+   cd /path/to/kai-custom
+   ```
+
+2. **Add the repository as a submodule**
+   ```bash
+   git submodule add https://github.com/[username]/[your-app-name] custom-apps/[your-app-name]
+   ```
+
+3. **Commit the submodule addition**
+   ```bash
+   git add .gitmodules custom-apps/[your-app-name]
+   git commit -m "Add [your-app-name] as submodule in custom-apps"
+   ```
+
+4. **Push changes to remote**
+   ```bash
+   git push origin main
+   ```
+
+5. **Update the README** (this file)
+   - Add your app to the "Custom Apps" section below
+   - Include the repository URL and brief description
+   - Update the repository structure diagram if needed
+
+### Step-by-Step Guide: Adding a Custom Element
+
+1. **Navigate to the main repository**
+   ```bash
+   cd /path/to/kai-custom
+   ```
+
+2. **Add the repository as a submodule**
+   ```bash
+   git submodule add https://github.com/[username]/[your-element-name] custom-elements/[your-element-name]
+   ```
+
+3. **Commit the submodule addition**
+   ```bash
+   git add .gitmodules custom-elements/[your-element-name]
+   git commit -m "Add [your-element-name] as submodule in custom-elements"
+   ```
+
+4. **Push changes to remote**
+   ```bash
+   git push origin main
+   ```
+
+5. **Update the README** (this file)
+   - Add your element to the "Custom Elements" section below
+   - Include the repository URL and brief description
+   - Update the repository structure diagram if needed
+
+### Example: Complete Workflow
+
+Here's a complete example of adding a new custom app called "content-scheduler":
+
 ```bash
-# For custom apps
-git submodule add <repository-url> custom-apps/<app-name>
+# 1. Navigate to main repository
+cd /Users/yourname/kai-custom
 
-# For custom elements
-git submodule add <repository-url> custom-elements/<element-name>
+# 2. Add submodule
+git submodule add https://github.com/yourname/content-scheduler custom-apps/content-scheduler
+
+# 3. Verify the addition
+ls custom-apps/
+# Should show: content-validator/ find-duplicates-url-slug/ model-visualizer/ content-scheduler/
+
+# 4. Check git status
+git status
+# Should show: modified .gitmodules and new custom-apps/content-scheduler
+
+# 5. Commit changes
+git add .gitmodules custom-apps/content-scheduler
+git commit -m "Add content-scheduler as submodule in custom-apps"
+
+# 6. Push to remote
+git push origin main
+
+# 7. Verify submodule configuration
+cat .gitmodules
 ```
+
+### Important Notes for Developers
+
+- **Repository Structure**: Ensure your module repository has proper structure with `package.json`, `README.md`, and deployment configuration
+- **Naming Convention**: Use kebab-case for directory names (e.g., `content-scheduler`, `tag-picker`)
+- **Documentation**: Each module must have comprehensive README with setup and usage instructions
+- **Dependencies**: Ensure your module can be built and deployed independently
+- **Testing**: Test your module thoroughly before adding it as a submodule
+
+## Submodule Management
 
 ### Updating Submodules
 ```bash
@@ -113,6 +208,12 @@ Located in `custom-apps/content-validator/`
 📁 **Repository:** https://github.com/fanpay/content-validator
 
 A custom app for validating content according to custom business rules.
+
+### Model Visualizer
+Located in `custom-apps/model-visualizer/`  
+📁 **Repository:** https://github.com/fanpay/model-visualizer
+
+A visualization tool for Kontent.ai content models and their relationships.
 
 ## Custom Elements
 
@@ -170,23 +271,58 @@ Run `./scripts/deploy.sh` to:
 
 ## Troubleshooting
 
-### Submodule Not Found
+### Common Issues When Adding Submodules
+
+#### Error: "already exists in the index"
+If you get this error, the path already exists. Remove it first:
+```bash
+git rm --cached custom-apps/[module-name]
+rm -rf custom-apps/[module-name]
+git submodule add https://github.com/[username]/[repo] custom-apps/[module-name]
+```
+
+#### Error: "repository does not exist"
+Ensure the repository URL is correct and you have access:
+```bash
+# Test repository access
+git ls-remote https://github.com/[username]/[repo]
+```
+
+#### Submodule shows as "modified" after adding
+This is normal. Commit the changes:
+```bash
+git add .gitmodules custom-apps/[module-name]
+git commit -m "Add [module-name] as submodule"
+```
+
+### General Submodule Issues
+
+#### Submodule Not Found
 ```bash
 git submodule update --init --recursive
 ```
 
-### Submodule Commit Mismatch
+#### Submodule Commit Mismatch
 ```bash
 git submodule update --remote
 git add .
 git commit -m "Update submodule references"
 ```
 
-### Reset Submodule
+#### Reset Submodule
 ```bash
 git submodule deinit <submodule-path>
 git rm <submodule-path>
 git submodule add <repository-url> <submodule-path>
+```
+
+#### Check Submodule Status
+```bash
+# See all submodules and their status
+git submodule status
+
+# See submodule configuration
+cat .gitmodules
 ```
 
 ## Contributing
