@@ -1,4 +1,9 @@
-# Kontent.ai Custom Extensions Repository
+# Konten├── custom-apps/                    # Custom applications submodules
+│   ├── find-duplicates-url-slug/   # Finds duplicate URL slugs
+│   └── model-visualizer/           # Model visualization tool
+├── custom-elements/                # Custom elements submodules
+│   ├── tag-picker/                 # Advanced tag picker element
+│   └── custom-element-unique-url-slug/ # Unique URL slug validator elementustom Extensions Repository
 
 This repository manages multiple Kontent.ai custom apps and custom elements using Git submodules. This approach allows for modular development and deployment while maintaining a unified structure.
 
@@ -203,12 +208,6 @@ Located in `custom-apps/find-duplicates-url-slug/`
 
 A Kontent.ai custom app to find and manage duplicate URL slugs across content items.
 
-### Content Validator
-Located in `custom-apps/content-validator/`  
-📁 **Repository:** https://github.com/fanpay/content-validator
-
-A custom app for validating content according to custom business rules.
-
 ### Model Visualizer
 Located in `custom-apps/model-visualizer/`  
 📁 **Repository:** https://github.com/fanpay/model-visualizer
@@ -222,6 +221,12 @@ Located in `custom-elements/tag-picker/`
 📁 **Repository:** https://github.com/fanpay/tag-picker
 
 An advanced tag selection custom element with enhanced functionality.
+
+### Custom Element Unique URL Slug
+Located in `custom-elements/custom-element-unique-url-slug/`  
+📁 **Repository:** https://github.com/fanpay/custom-element-unique-url-slug
+
+A custom element that validates and ensures unique URL slugs across content items.
 
 ## Best Practices
 

@@ -1,12 +1,12 @@
 [submodule "custom-apps/find-duplicates-url-slug"]
 	path = custom-apps/find-duplicates-url-slug
 	url = https://github.com/fanpay/find-duplicates-url-slug.git
-[submodule "custom-apps/content-validator"]
-	path = custom-apps/content-validator
-	url = https://github.com/fanpay/content-validator.git
 [submodule "custom-elements/tag-picker"]
 	path = custom-elements/tag-picker
 	url = https://github.com/fanpay/tag-picker.git
 [submodule "custom-apps/model-visualizer"]
 	path = custom-apps/model-visualizer
 	url = https://github.com/fanpay/model-visualizer
+[submodule "custom-elements/custom-element-unique-url-slug"]
+	path = custom-elements/custom-element-unique-url-slug
+	url = https://github.com/fanpay/custom-element-unique-url-slug
