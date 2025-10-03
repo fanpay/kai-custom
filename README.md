@@ -1,9 +1,4 @@
-# Konten├── custom-apps/                    # Custom applications submodules
-│   ├── find-duplicates-url-slug/   # Finds duplicate URL slugs
-│   └── model-visualizer/           # Model visualization tool
-├── custom-elements/                # Custom elements submodules
-│   ├── tag-picker/                 # Advanced tag picker element
-│   └── custom-element-unique-url-slug/ # Unique URL slug validator elementustom Extensions Repository
+# Kontent.ai Custom Apps and Elements Repository
 
 This repository manages multiple Kontent.ai custom apps and custom elements using Git submodules. This approach allows for modular development and deployment while maintaining a unified structure.
 
@@ -11,19 +6,19 @@ This repository manages multiple Kontent.ai custom apps and custom elements usin
 
 ```
 kai-custom/
-├── custom-apps/                    # Custom applications submodules
-│   ├── find-duplicates-url-slug/   # Finds duplicate URL slugs
-│   ├── content-validator/          # Content validation app
-│   └── model-visualizer/           # Model visualization tool
-├── custom-elements/                # Custom elements submodules
-│   └── tag-picker/                 # Advanced tag picker element
-├── .gitmodules                     # Submodule configuration
-├── README.md                       # This file
-└── scripts/                        # Management scripts
-    ├── setup.sh                    # Initial setup script
-    ├── configure-git.sh            # Configure Git settings
-    ├── update-all.sh               # Update all submodules
-    └── deploy.sh                   # Deployment script
+├── custom-apps/                            # Custom applications submodules
+│   ├── find-duplicates-url-slug/           # Finds duplicate URL slugs
+│   └── model-visualizer/                   # Model visualization tool
+├── custom-elements/                        # Custom elements submodules
+│   ├── tag-picker/                         # Advanced tag picker element
+│   └── custom-element-unique-url-slug/     # Unique URL slug validator element
+├── .gitmodules                             # Submodule configuration
+├── README.md                               # This file
+└── scripts/                                # Management scripts
+    ├── setup.sh                            # Initial setup script
+    ├── configure-git.sh                    # Configure Git settings
+    ├── update-all.sh                       # Update all submodules
+    └── deploy.sh                           # Deployment script
 ```
 
 ## Getting Started
