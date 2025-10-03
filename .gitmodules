@@ -7,3 +7,6 @@
 [submodule "custom-elements/tag-picker"]
 	path = custom-elements/tag-picker
 	url = https://github.com/fanpay/tag-picker.git
+[submodule "custom-apps/model-visualizer"]
+	path = custom-apps/model-visualizer
+	url = https://github.com/fanpay/model-visualizer
