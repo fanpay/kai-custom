@@ -48,8 +48,9 @@ update_submodule() {
 # Update each submodule
 echo "📥 Updating submodules to latest commits..."
 update_submodule "custom-apps/find-duplicates-url-slug"
-update_submodule "custom-apps/content-validator"
+update_submodule "custom-apps/model-visualizer"
 update_submodule "custom-elements/tag-picker"
+update_submodule "custom-elements/custom-element-unique-url-slug"
 
 echo ""
 echo "📊 Submodule Status Summary:"
@@ -67,8 +68,9 @@ if git diff --cached --quiet; then
         git commit -m "Update submodules to latest versions
 
 - Updated custom-apps/find-duplicates-url-slug
-- Updated custom-apps/content-validator  
+- Updated custom-apps/model-visualizer  
 - Updated custom-elements/tag-picker
+- Updated custom-elements/custom-element-unique-url-slug
 
 $(date)"
         echo "✅ Submodule updates committed"
