@@ -10,8 +10,7 @@ kai-custom/
 │   ├── find-duplicates-url-slug/           # Finds duplicate URL slugs
 │   └── model-visualizer/                   # Model visualization tool
 ├── custom-elements/                        # Custom elements submodules
-│   ├── tag-picker/                         # Advanced tag picker element
-│   └── custom-element-unique-url-slug/     # Unique URL slug validator element
+│   └── tag-picker/                         # Advanced tag picker element
 ├── .gitmodules                             # Submodule configuration
 ├── README.md                               # This file
 └── scripts/                                # Management scripts
@@ -216,12 +215,6 @@ Located in `custom-elements/tag-picker/`
 📁 **Repository:** https://github.com/fanpay/tag-picker
 
 An advanced tag selection custom element with enhanced functionality.
-
-### Custom Element Unique URL Slug
-Located in `custom-elements/custom-element-unique-url-slug/`  
-📁 **Repository:** https://github.com/fanpay/custom-element-unique-url-slug
-
-A custom element that validates and ensures unique URL slugs across content items.
 
 ## Best Practices
 

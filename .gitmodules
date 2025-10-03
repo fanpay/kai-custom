@@ -7,6 +7,3 @@
 [submodule "custom-apps/model-visualizer"]
 	path = custom-apps/model-visualizer
 	url = https://github.com/fanpay/model-visualizer
-[submodule "custom-elements/custom-element-unique-url-slug"]
-	path = custom-elements/custom-element-unique-url-slug
-	url = https://github.com/fanpay/custom-element-unique-url-slug
