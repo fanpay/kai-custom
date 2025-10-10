@@ -36,15 +36,37 @@ export class KontentService {
   }
 
   /**
-   * Get all content types from an environment using direct API calls to handle pagination
+   * Get all content types from an environment using multiple strategies
    */
   async getContentTypes(environment: Environment): Promise<ContentType[]> {
+    console.log(`🔍 Starting to fetch content types from environment ${environment.id}`);
+    
     try {
+      // Strategy 1: Use SDK's toAllPromise() method to get all items
+      console.log('🎯 Trying SDK toAllPromise() method...');
+      
+      const client = this.getManagementClient(environment);
+      
+      try {
+        const response = await client.listContentTypes().toAllPromise();
+        console.log(`✅ SDK toAllPromise(): Successfully fetched ${response.data.items.length} content types`);
+        
+        if (response.data.items.length > 0) {
+          return this.mapContentTypesFromResponse(response.data.items);
+        }
+      } catch (sdkError) {
+        console.warn('⚠️ SDK toAllPromise() failed:', sdkError);
+      }
+
+      // Strategy 2: Use direct API calls with x-continuation header
+      console.log('🔄 Trying direct API method with x-continuation...');
+      
       const allContentTypes: any[] = [];
       let continuationToken: string | null = null;
+      let pageCount = 0;
       
-      // Use direct fetch API to handle pagination with x-continuation header
       do {
+        pageCount++;
         const url = `https://manage.kontent.ai/v2/projects/${environment.id}/types`;
         const headers: Record<string, string> = {
           'Authorization': `Bearer ${environment.apiKey}`,
@@ -53,6 +75,9 @@ export class KontentService {
         
         if (continuationToken) {
           headers['x-continuation'] = continuationToken;
+          console.log(`📄 Fetching page ${pageCount} with continuation token`);
+        } else {
+          console.log(`📄 Fetching page ${pageCount} (first page)`);
         }
         
         const response = await fetch(url, {
@@ -61,46 +86,59 @@ export class KontentService {
         });
         
         if (!response.ok) {
+          console.error(`❌ API Error: HTTP ${response.status}: ${response.statusText}`);
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
         
         const data = await response.json();
-        allContentTypes.push(...data.types);
+        const pageItems = data.types || [];
+        console.log(`📊 Page ${pageCount}: received ${pageItems.length} content types`);
+        
+        allContentTypes.push(...pageItems);
         
         // Get continuation token for next page
         continuationToken = response.headers.get('x-continuation');
+        console.log(`🔗 Page ${pageCount}: continuation = ${continuationToken ? 'YES' : 'NO'}`);
         
       } while (continuationToken);
       
-      console.log(`Fetched ${allContentTypes.length} content types from environment ${environment.id}`);
+      console.log(`🎉 Direct API: Successfully fetched ${allContentTypes.length} content types in ${pageCount} page(s)`);
       
-      return allContentTypes.map((item: any) => ({
-        id: item.id || '',
-        name: item.name || '',
-        codename: item.codename || '',
-        last_modified: new Date(item.last_modified || Date.now()),
-        elements: item.elements?.map((element: any) => ({
-          id: element.id || '',
-          name: element.name || '',
-          codename: element.codename || '',
-          type: element.type || '',
-          is_required: element.is_required || false,
-          is_non_localizable: element.is_non_localizable || false,
-          guidelines: element.guidelines || '',
-          options: element.options || [],
-          allowed_content_types: element.allowed_content_types || [],
-          validation: element.validation || null,
-        })) || [],
-        content_groups: item.content_groups?.map((group: any) => ({
-          id: group.id || '',
-          name: group.name || '',
-          codename: group.codename || '',
-        })) || [],
-      }));
+      return this.mapContentTypesFromResponse(allContentTypes);
+      
     } catch (error) {
-      console.error('Failed to fetch content types:', error);
+      console.error('❌ Failed to fetch content types:', error);
       throw new Error(`Failed to fetch content types: ${error}`);
     }
+  }
+
+  /**
+   * Maps raw content type data to our ContentType interface
+   */
+  private mapContentTypesFromResponse(items: any[]): ContentType[] {
+    return items.map((item: any) => ({
+      id: item.id || item.system?.id || '',
+      name: item.name || item.system?.name || '',
+      codename: item.codename || item.system?.codename || '',
+      last_modified: new Date(item.last_modified || item.system?.last_modified || Date.now()),
+      elements: item.elements?.map((element: any) => ({
+        id: element.id || '',
+        name: element.name || '',
+        codename: element.codename || '',
+        type: element.type || '',
+        is_required: element.is_required || false,
+        is_non_localizable: element.is_non_localizable || false,
+        guidelines: element.guidelines || '',
+        options: element.options || [],
+        allowed_content_types: element.allowed_content_types || [],
+        validation: element.validation || null,
+      })) || [],
+      content_groups: item.content_groups?.map((group: any) => ({
+        id: group.id || '',
+        name: group.name || '',
+        codename: group.codename || '',
+      })) || [],
+    }));
   }
 
   /**
