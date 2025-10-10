@@ -7,6 +7,7 @@ This repository manages multiple Kontent.ai custom apps and custom elements usin
 ```
 kai-custom/
 ├── custom-apps/                            # Custom applications submodules
+│   ├── content-type-migrator/              # Content type migration tool
 │   ├── find-duplicates-url-slug/           # Finds duplicate URL slugs
 │   └── model-visualizer/                   # Model visualization tool
 ├── custom-elements/                        # Custom elements submodules
@@ -195,6 +196,12 @@ git push
 ```
 
 ## Custom Apps
+
+### Content Type Migrator
+Located in `custom-apps/content-type-migrator/`  
+📁 **Repository:** Built-in (not a separate submodule)
+
+A powerful Kontent.ai custom app for migrating content types between environments. Features real-time progress tracking, dry-run capabilities, and comprehensive error handling.
 
 ### Find Duplicates URL Slug
 Located in `custom-apps/find-duplicates-url-slug/`  
