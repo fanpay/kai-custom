@@ -16,29 +16,22 @@ Este documento te guía para completar la conversión de `content-type-migration
 - Ve a https://github.com/fanpay
 - Haz clic en "New repository"
 - Nombre: `content-type-migration`
-- Descripción: "Content Type Migration Tool for Kontent.ai"
+- Descripción: "Content Type Migration Tool for Kontent.ai - Custom App for migrating content types between environments"
 - Público
 - **NO** inicializar con README, .gitignore, o licencia (el repo local ya tiene contenido)
 
-### 2. Hacer push del código
+### 2. Ejecutar script de configuración automática
 Una vez creado el repositorio en GitHub:
 ```bash
-cd /tmp/content-type-migration-backup
-git push -u origin main
-```
-
-### 3. Agregar submódulo al repositorio principal
-```bash
 cd /Users/fpayan/HUGE/KOERBER/tutorials/kontent.ai/kai-custom
-git submodule add https://github.com/fanpay/content-type-migration.git custom-apps/content-type-migration
+./fix-submodule-setup.sh
 ```
 
-### 4. Commit los cambios en kai-custom
-```bash
-git add .gitmodules custom-apps/content-type-migration
-git commit -m "Add content-type-migration as submodule"
-git push origin main
-```
+Este script automáticamente:
+- Hace push del código limpio al repositorio de GitHub
+- Configura content-type-migration como submódulo REAL (no carpeta regular)
+- Verifica que funcione como los otros submódulos (find-duplicates-url-slug, model-visualizer, tag-picker)
+- Hace commit y push de los cambios
 
 ### 5. Inicializar submódulos para otros desarrolladores
 Cuando otros desarrolladores clonen el repositorio principal, necesitarán:
