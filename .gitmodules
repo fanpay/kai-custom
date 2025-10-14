@@ -7,3 +7,6 @@
 [submodule "custom-apps/model-visualizer"]
 	path = custom-apps/model-visualizer
 	url = https://github.com/fanpay/model-visualizer
+[submodule "custom-apps/content-type-migration"]
+	path = custom-apps/content-type-migration
+	url = https://github.com/fanpay/content-type-migration.git
