@@ -65,7 +65,7 @@ setup_submodule() {
 echo ""
 echo "🔧 Setting up individual submodules..."
 setup_submodule "custom-apps/find-duplicates-url-slug"
-setup_submodule "custom-apps/content-validator"
+setup_submodule "custom-apps/content-type-migration"
 setup_submodule "custom-elements/tag-picker"
 
 echo ""

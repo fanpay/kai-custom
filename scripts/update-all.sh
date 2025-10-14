@@ -49,6 +49,7 @@ update_submodule() {
 echo "📥 Updating submodules to latest commits..."
 update_submodule "custom-apps/find-duplicates-url-slug"
 update_submodule "custom-apps/model-visualizer"
+update_submodule "custom-apps/content-type-migration"
 update_submodule "custom-elements/tag-picker"
 
 echo ""
@@ -68,6 +69,7 @@ if git diff --cached --quiet; then
 
 - Updated custom-apps/find-duplicates-url-slug
 - Updated custom-apps/model-visualizer  
+- Updated custom-apps/content-type-migration
 - Updated custom-elements/tag-picker
 
 $(date)"
