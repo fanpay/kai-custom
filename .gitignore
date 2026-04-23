@@ -198,5 +198,3 @@ config.local.json
 *.bak
 
 # PEM files
-*.pemcustom-apps/content-environment-migration/
-custom-apps/content-environment-migration/
