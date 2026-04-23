@@ -7,6 +7,9 @@
 [submodule "custom-apps/content-type-migration"]
 	path = custom-apps/content-type-migration
 	url = https://github.com/fanpay/content-type-migration.git
+[submodule "custom-apps/content-environment-migration"]
+	path = custom-apps/content-environment-migration
+	url = https://github.com/fanpay/content-environment-migration.git
 [submodule "custom-elements/tag-picker"]
 	path = custom-elements/tag-picker
 	url = https://github.com/fanpay/tag-picker.git
